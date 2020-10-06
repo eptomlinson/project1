@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Favorite Movies</title>
+  <style type="text/css">
+    button,
+    div,
+    form,
+    input {
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Movie Search</h1>
+   <!-- take this button out use input from food search as input -->
+    <div id="buttons-view"></div>
+<!-- no need for this since the search for food will generate input for movie -->
+    <form id="movie-form">
+      <label for="movie-input">Add a Movie, Yo!</label>
+      <input type="text" id="movie-input"><br>
+<!-- take this button out since movie input and click should be from food search -->
+      <input id="add-movie" type="submit" value="Add a Movie, Yo!">
+    </form>
+ <!-- keep this for movie display -->
+    <div id="movies-view"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    //  empty array for the movie
+      var movies = [];
+        // movie display
+      function displayMovieInfo() {
+        var movie = $(this).attr("data-name");
+        var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function(response) {
+        var posterDiv = $("<img>");
+              posterDiv.attr("src", response.Poster)
+              $("#movies-view").prepend(posterDiv);
+        });
+      }
+    //  this just gets the movie poster and displays it
+      function movieRec() {
+// take this button out and make it the input from the food recommendation
+        $("#buttons-view").empty();
+        for (var i = 0; i < movies.length; i++) {
+        //   / dynamicaly generates buttons for each movie in the array but it
+            //  should be tied to the click event from movie
+          var a = $("<button>");
+          a.addClass("movie");
+          a.attr("data-name", movies[i]);
+          a.text(movies[i]);
+          $("#buttons-view").append(a);
+        }
+      }
+// this function needs to handle food choice and movie recommendation
+      $("#add-movie").on("click", function(event) {
+        event.preventDefault();
+    //   this should be grab the movie input
+        var movie = $("#movie-input").val().trim();
+// this adds the movie to the the array
+        movies.push(movie);
+        movieRec();
+      });
+      $(document).on("click", ".movie", displayMovieInfo);
+      movieRec();
+    </script>
+  </div>
+</body>
