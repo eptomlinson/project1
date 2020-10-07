@@ -5,10 +5,8 @@ cuisineList()
 //Get City ID for User Search
 $('#foodBtn').on('click', function(e) {
   e.preventDefault();
-  var food = $("#userFood").val();
   var userInput = $("#userInput").val();
-  console.log(userInput);
-  console.log(food);
+  // console.log(userInput);
   var queryURL = "https://developers.zomato.com/api/v2.1/search?entity_id=292&entity_type=city&cuisines="+userInput;
   $.ajax({
     url: queryURL,
@@ -18,17 +16,16 @@ $('#foodBtn').on('click', function(e) {
     }
 })
 .then(function(response) {
-    console.log(response);
-    for (i = 1; i < 20; i++){
-    console.log(response.resturants[i].restaurant.name);
+  console.log(response);
+    for (var i = 1; i < 20; i++){
+    var restaurantList = $("<li>")
+    var restaurant = (response.restaurants[i].restaurant.name);
+    var location = response.restaurants[i].restaurant.location.address;
+    restaurantList.text(restaurant +" - Address: " +location);
+    $("#restaurant").append(restaurantList);
+    console.log(response.restaurants[i].restaurant.name);
     }
 });
-
-//     cuisineID = response.location_suggestions[0].city_id;
-//     console.log(cityID);
-//     $('#food').html(response.location_suggestions[0].city_name);
-//     return cityID;
-//   });
   
 });
 function cuisineList(){
@@ -41,7 +38,7 @@ $.ajax({
     'user-key' : apiKey
   }
 }).then(function(response){
-  console.log(response.cuisines[0].cuisine.cuisine_name);
+  
   // "userInput"
   for(var i = 0; i < response.cuisines.length; i++){
     var optionList = $("<option>")
