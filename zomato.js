@@ -4,9 +4,9 @@ var apiKey = 'f61035e04f9b3156d193146e6e338300';
 //Get City ID for User Search
 $('#foodBtn').on('click', function(e) {
   e.preventDefault();
-  var food = $('#userFood').val();
-  $('#userFood').val('');
-  var queryURL = "https://developers.zomato.com/api/v2.1/search?city_id=292&cuisines="+JSON.stringify(food);
+  var food = document.getElementById("#userfood").textContent
+  console.log(food);
+  var queryURL = "https://developers.zomato.com/api/v2.1/search?city_id=292&cuisines="+food;
   $.ajax({
     url: queryURL,
     method: 'GET',
