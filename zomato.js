@@ -6,7 +6,7 @@ $('#foodBtn').on('click', function(e) {
   e.preventDefault();
   var food = $('#userFood').val();
   $('#userFood').val('');
-  var queryURL = "https://developers.zomato.com/api/v2.1/search?city_id=292&cuisines="+food;
+  var queryURL = "https://developers.zomato.com/api/v2.1/search?city_id=292&cuisines="+JSON.stringify(food);
   $.ajax({
     url: queryURL,
     method: 'GET',
