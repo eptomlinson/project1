@@ -13,18 +13,21 @@
         <p class="plan">Plan your date night! Pick what kind of food you want to eat, and we will suggest a restaurant
             and a movie!</p>
     </div>
-    <div id="food-search">
-        <form>
-            <label for="food-input">What food are you craving?</label>
-            <input type="text" id="food-input" />
-            <button id="food-input" type="submit" value="Submit">Submit</button>
-        </form>
-        <div id="food-display"></div>
-    </div>
+    <div class ="column">
+        <input type="text" placeholder="what food do you want?" id="userfood">
+        <button id="foodBtn">
+        Enter food
+        </button>
+        <p>Food:
+         <span id="food"></span>
+        </p>
     <div id="movie-rec"></div>
+    </div>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="script.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src = "zomato.js"></script>
 
 
 </body>
