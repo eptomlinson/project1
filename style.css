@@ -1,0 +1,27 @@
+.has-background-warning {
+    background-color: hsl(48, 100%, 67%);
+}
+
+.has-background-info {
+    background-color: hsl(204, 86%, 53%);
+}
+
+.title {
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+}
+
+#apiTitle {
+    text-align: left;
+}
+
+.navbar {
+    background-color: black;
+}
+
+.navbar-item{
+    color: white;
+}
