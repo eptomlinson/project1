@@ -47,8 +47,15 @@ $('#foodBtn').on('click', function(e) {
     }
   })
   .then(function(movieResponse){
+    $("#poster-view").empty();
     console.log(movieResponse);
     console.log(movieResponse.Title);
+    console.log(movieResponse.Poster);
+    var posterImage = $("<img>");
+        posterImage.attr("src", movieResponse.Poster);
+         $("#poster-view").prepend(posterImage);
+
+        
     $("#movie-rec").text(movieResponse.Title + " // Released: " + movieResponse.Year + " // Rated: " + movieResponse.Rated + " // Genre: " + movieResponse.Genre + " // Starring: " + movieResponse.Actors + " // Directed By: " + movieResponse.Director + " // " + movieResponse.Runtime + "utes");
   })
 });
